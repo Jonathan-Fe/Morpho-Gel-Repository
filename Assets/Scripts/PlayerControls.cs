@@ -32,7 +32,9 @@ public class PlayerControls : MonoBehaviour
 
     public float moveSpeed;
     public float jumpForce;
+
     public bool grounded;
+    public bool launched = false;
 
     private void Start()
     {
@@ -43,28 +45,32 @@ public class PlayerControls : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Vector3 forward = cam.transform.forward;
-        Vector3 right = cam.transform.right;
-
-        //Debug.Log("Forward: " + forward);
-        //Debug.Log("Right: " + right);
-
-        float playerVerticalInput = Input.GetAxis("Vertical") * moveSpeed;
-        float playerHorizontalInput = Input.GetAxis("Horizontal") * moveSpeed;
-
-        Vector3 forwardRelative = playerVerticalInput * forward;
-        Vector3 rightRelative = playerHorizontalInput * right;
-        Vector3 cameraRelativeMovement = (forwardRelative + rightRelative);
-
-        //t schrb.velocity = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, rb.velocity.y, Input.GetAxis("Vertical") * moveSpeed);
-        rb.velocity = new Vector3(cameraRelativeMovement.x, rb.velocity.y, cameraRelativeMovement.z);
-
-        //rb.velocity = cameraRelativeMovement;
-
-        Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
-        if (movement != _still)
+        if (!launched)
         {
-            transform.rotation = Quaternion.LookRotation(movement);
+
+            Vector3 forward = cam.transform.forward;
+            Vector3 right = cam.transform.right;
+
+            //Debug.Log("Forward: " + forward);
+            //Debug.Log("Right: " + right);
+
+            float playerVerticalInput = Input.GetAxis("Vertical") * moveSpeed;
+            float playerHorizontalInput = Input.GetAxis("Horizontal") * moveSpeed;
+
+            Vector3 forwardRelative = playerVerticalInput * forward;
+            Vector3 rightRelative = playerHorizontalInput * right;
+            Vector3 cameraRelativeMovement = (forwardRelative + rightRelative);
+
+            //t schrb.velocity = new Vector3(Input.GetAxis("Horizontal") * moveSpeed, rb.velocity.y, Input.GetAxis("Vertical") * moveSpeed);
+            rb.velocity = new Vector3(cameraRelativeMovement.x, rb.velocity.y, cameraRelativeMovement.z);
+
+            //rb.velocity = cameraRelativeMovement;
+
+            Vector3 movement = new Vector3(Input.GetAxis("Horizontal"), 0.0f, Input.GetAxis("Vertical"));
+            if (movement != _still)
+            {
+                transform.rotation = Quaternion.LookRotation(movement);
+            }
         }
 
         if (Input.GetKeyDown(KeyCode.Space) && grounded)
@@ -158,6 +164,7 @@ public class PlayerControls : MonoBehaviour
         if(collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Panel" || collision.gameObject.tag == "Metal")
         {
             grounded = true;
+            launched = false;
             Debug.Log("Player is grounded");
         }
     }

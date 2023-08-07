@@ -30,6 +30,16 @@ public class Menu : MonoBehaviour
         SceneManager.LoadScene("Stage_01");
     }
 
+    public void ToStageTwo()
+    {
+        SceneManager.LoadScene("Stage_02");
+    }
+
+    public void ToStageThree()
+    {
+        SceneManager.LoadScene("Stage_03");
+    }
+
     public void ToTransformations()
     {
         SceneManager.LoadScene("Instructions_Transformations");
