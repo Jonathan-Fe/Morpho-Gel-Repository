@@ -162,6 +162,9 @@ MonoBehaviour:
   moveSpeed: 8
   jumpForce: 14
   grounded: 0
+  sc: {fileID: 3716880288233523223}
+  checkOffset: 0.1
+  launched: 0
 --- !u!114 &2371562073548054239
 MonoBehaviour:
   m_ObjectHideFlags: 0

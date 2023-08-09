@@ -11,6 +11,8 @@ TagManager:
   - Metal
   - Key
   - Door
+  - Torch
+  - Death
   layers:
   - Default
   - TransparentFX
@@ -20,8 +22,8 @@ TagManager:
   - UI
   - Water_Level
   - Steel
-  - 
-  - 
+  - Camera
+  - Ground
   - 
   - 
   - 

@@ -6,11 +6,6 @@ public class ButtonBridge : MonoBehaviour
 {
     public GameObject bridge;
     public bool buttonIsPushed;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     void activationSwap()
     {

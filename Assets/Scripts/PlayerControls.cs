@@ -34,6 +34,8 @@ public class PlayerControls : MonoBehaviour
     public float jumpForce;
 
     public bool grounded;
+    public SphereCollider sc;
+    public float checkOffset = 0.1f;
     public bool launched = false;
 
     private void Start()
@@ -73,10 +75,11 @@ public class PlayerControls : MonoBehaviour
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && grounded)
+        if (Input.GetKeyDown(KeyCode.Space) && GroundCheck())
         {
             Debug.Log("Jump is executing...");
             rb.velocity = new Vector3(rb.velocity.x, jumpForce, rb.velocity.z);
+            grounded = false;
             Debug.Log("Jump is done executing.");
         }
 
@@ -169,12 +172,32 @@ public class PlayerControls : MonoBehaviour
         }
     }
 
+    /*
+
     public void OnCollisionExit(Collision collision)
     {
         if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Panel" || collision.gameObject.tag == "Metal")
         {
             grounded = false;
             Debug.Log("Player is no longer grounded");
+        }
+    }
+    */
+
+    bool GroundCheck()
+    {
+        //Physics.Raycast(sc.bounds.center, Vector3.down, sc.bounds.extents.y + checkOffset);
+        Color rayColor;
+        Debug.DrawRay(sc.bounds.center, Vector3.down * (sc.bounds.extents.y + checkOffset));
+        if (Physics.Raycast(sc.bounds.center, Vector3.down, sc.bounds.extents.y + checkOffset))
+        {
+            rayColor = Color.green;
+            return true;
+        }
+        else
+        {
+            rayColor = Color.red;
+            return false;
         }
     }
 

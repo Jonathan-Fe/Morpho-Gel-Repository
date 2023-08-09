@@ -80,5 +80,12 @@ public class Player_Collision : MonoBehaviour
             SceneManager.LoadScene("Level_Select");
 
         }
+
+        if (collision.collider.tag == "Death")
+        {
+            Debug.Log("Player Touched a Death Plane...");
+            FindObjectOfType<GameManager>().RestartOnDeath();
+            Destroy(gameObject);
+        }
     }
 }
