@@ -2,6 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
+// This script was initially used to change the tangibility of water before I changed my code to use layers instead
+// Thus, this script is no longer used
 public class Trigger_Swap : MonoBehaviour
 {
     public GameObject player;

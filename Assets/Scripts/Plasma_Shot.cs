@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Plasma_Shot : MonoBehaviour
 {
-
+    // General collision code
     private void OnCollisionEnter(Collision collision)
     {
+        // If the plasma shot collides with a torch, "light" the torch
         if (collision.collider.tag == "Torch")
         {
             TorchLight tl = collision.collider.transform.parent.gameObject.GetComponent<TorchLight>();
@@ -16,6 +17,8 @@ public class Plasma_Shot : MonoBehaviour
                 tl.ChangeModel();
             }
         }
+
+        // Upon collision with any object, destroy the Plasma Shot
         Destroy(gameObject);
     }
 

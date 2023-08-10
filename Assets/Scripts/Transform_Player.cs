@@ -5,9 +5,13 @@ using UnityEngine.Playables;
 
 public class Transform_Player : MonoBehaviour
 {
+    // The Panel Game Object (The Panel this script is attached to)
     public GameObject panel;
+
+    // A string that determines with transformation the player will undergo on contact
     public string transformation;
 
+    // The materials for each transformation
     public Material slime;
     public Material steel;
     public Material wood;
@@ -16,7 +20,7 @@ public class Transform_Player : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        // This controls the player's appearance based on their current state
+        // This controls the panel's appearance based on their transformation string
         switch (transformation)
         {
             case "Slime":

@@ -13,6 +13,7 @@ TagManager:
   - Door
   - Torch
   - Death
+  - Wood
   layers:
   - Default
   - TransparentFX
